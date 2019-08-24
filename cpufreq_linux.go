@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -25,6 +26,12 @@ func readCPUFreq(cpu int) (int, error) {
 }
 
 func main() {
+	v := flag.Bool("v", false, "Show version and exit")
+	flag.Parse()
+	if *v {
+		fmt.Printf("humanfreq v%s by Daniel Gurney\n", version)
+		return
+	}
 	for {
 		c := exec.Command("clear")
 		c.Stdout = os.Stdout
