@@ -10,8 +10,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/intel-go/cpuid"
 )
 
 func readCPUFreq(cpu int) (int, error) {
@@ -39,7 +37,6 @@ func main() {
 		c := exec.Command("clear")
 		c.Stdout = os.Stdout
 		c.Run()
-		fmt.Println("Processor model:", cpuid.ProcessorBrandString)
 		for i := 0; i < runtime.NumCPU(); i++ {
 			freq, err := readCPUFreq(i)
 			if err != nil {
