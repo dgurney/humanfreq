@@ -26,7 +26,8 @@ func readCPUFreq(cpu int) (int, error) {
 }
 
 func main() {
-	v := flag.Bool("v", false, "Show version and exit")
+	g := flag.Bool("g", false, "Use GHz instead of MHz.")
+	v := flag.Bool("v", false, "Show version and exit.")
 	flag.Parse()
 	if *v {
 		fmt.Printf("humanfreq v%s by Daniel Gurney\n", version)
@@ -42,8 +43,16 @@ func main() {
 				fmt.Println("CPU frequency read error:", err)
 				return
 			}
-			mhz := freq / 1000
-			fmt.Printf("CPU%d: %d MHz\n", i, mhz)
+			var conv float32
+			switch {
+			default:
+				conv = float32(freq) / 1000 // MHz
+				fmt.Printf("CPU%d: %.0f MHz\n", i, conv)
+			case *g:
+				conv = float32(freq) / 1000000 // GHz
+				fmt.Printf("CPU%d: %.2f GHz\n", i, conv)
+			}
+
 		}
 		time.Sleep(500 * time.Millisecond)
 	}
