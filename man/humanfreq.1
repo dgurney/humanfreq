@@ -1,11 +1,13 @@
 .\" Manpage for humanfreq.
-.TH man 1 "24 Aug 2019" "1.1.5" "humanfreq man page"
+.TH man 1 "15 Sep 2019" "1.2.0" "humanfreq man page"
 .SH NAME
 humanfreq \- Show the current CPU frequency in MHz or GHz 
 .SH SYNOPSIS
 humanfreq [-g] [-v]
 .SH DESCRIPTION
-humanfreq converts the KHz value in scaling_cur_freq to a more human-digestible format.
+humanfreq converts the KHz value in scaling_cur_freq to a more human-digestible format on Linux.
+
+On other platforms, it uses whatever facilities are available for getting the current clock speed.
 .SH OPTIONS
 -v 
     Show the version number and exit.
